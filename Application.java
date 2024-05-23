@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,6 +11,8 @@ public class Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         SystemFunctions systemFunctions = new SystemFunctions();
+        Video video = new Video();
+        List<Video> videoList = new ArrayList<>();
 
         boolean closeMenu = false;
         while (!closeMenu) {
@@ -16,7 +20,7 @@ public class Application {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    systemFunctions.addVideo();
+                    systemFunctions.addVideo(scanner, video, videoList);
                     break;
                 case 2:
                     systemFunctions.borrowVideo();
