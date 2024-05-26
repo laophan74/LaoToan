@@ -1,17 +1,15 @@
-import java.sql.Date;
-
 public class Video {
     private String id;
     private String name;
-    private Date addedDate;
+    private String modifiedDate;
     private String videoPath;
 
     public Video(){}
 
-    public Video (String id, String name, Date addedDate, String videoPath){
+    public Video (String id, String name, String modifiedDate, String videoPath){
         this.id = id;
         this.name = name;
-        this.addedDate = addedDate;
+        this.modifiedDate = modifiedDate;
         this.videoPath = videoPath;
     }
 
@@ -31,12 +29,12 @@ public class Video {
         this.name = name;
     }
 
-    public Date getAddedDate() {
-        return addedDate;
+    public String getModifiedDate() {
+        return modifiedDate;
     }
 
-    public void setAddedDate(Date addedDate) {
-        this.addedDate = addedDate;
+    public void setModifiedDate(String modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public String getVideoPath() {

@@ -35,7 +35,7 @@ public class Application {
                     systemFunctions.searchVideo();
                     break;
                 case 6:
-                    systemFunctions.reportVideo();
+                    systemFunctions.reportVideo(video, videoList);
                     break;
                 case 7:
                     playVideoSelections(scanner);
