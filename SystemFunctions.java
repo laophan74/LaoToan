@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SystemFunctions {
-    public void addVideo(Scanner scanner, Video video, List<Video> videoList){
+    public void addVideo(Scanner scanner, ArrayList<Video> videoList){
         System.out.print("Enter video ID: ");
         String id = scanner.next();
         scanner.nextLine();
         System.out.print("Enter video name: ");
         String name = scanner.nextLine();
-        String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         System.out.print("Enter video path: ");
-        String videoPath = scanner.nextLine();
+        String path = scanner.nextLine();
+        String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         
-        video = new Video(id, name, modifiedDate, videoPath);
+        Video video = new Video(id, name, modifiedDate, path);
         videoList.add(video);
         System.out.println("Video added successfully at " + video.getModifiedDate());
     }
@@ -40,7 +40,8 @@ public class SystemFunctions {
         System.out.println("List of video");
     }
 
-    public void reportVideo(Video video, List<Video> videoList){
+    public void reportVideo(List<Video> videoList){
+        Video video = new Video();
         System.out.println("List of video: ");
         for (int i = 0; i < videoList.size(); i++) {
             video = videoList.get(i);
@@ -48,9 +49,9 @@ public class SystemFunctions {
             System.out.println("ID: " + video.getId());
             System.out.println("Name: " + video.getName());
             System.out.println("Modified Date: " + video.getModifiedDate());
-            System.out.println("Path: " + video.getModifiedDate());
+            System.out.println("Path: " + video.getVideoPath());
             System.out.println();
         }
-        
     }
+
 }

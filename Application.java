@@ -12,7 +12,8 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
         SystemFunctions systemFunctions = new SystemFunctions();
         Video video = new Video();
-        List<Video> videoList = new ArrayList<>();
+        Video borrowedVideo = new Video();
+        ArrayList<Video> videoList = new ArrayList<>();
 
         boolean closeMenu = false;
         while (!closeMenu) {
@@ -20,7 +21,7 @@ public class Application {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    systemFunctions.addVideo(scanner, video, videoList);
+                    systemFunctions.addVideo(scanner, videoList);
                     break;
                 case 2:
                     systemFunctions.borrowVideo();
@@ -35,19 +36,20 @@ public class Application {
                     systemFunctions.searchVideo();
                     break;
                 case 6:
-                    systemFunctions.reportVideo(video, videoList);
+                    systemFunctions.reportVideo(videoList);
                     break;
                 case 7:
-                    playVideoSelections(scanner);
+                    playVideoSelections(scanner, videoList);
                     break;
                 case 0:
                     closeMenu = true;
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("\nInvalid input, try again!");
             }
         }
-
+        scanner.close();
     }
 
     private static void createSelectionMenu(){
@@ -63,8 +65,8 @@ public class Application {
         System.out.print("Your choice --> ");
     }
 
-    private static void playVideoSelections(Scanner scanner){
-        PlayVideo playVideo = new PlayVideo();
+    private static void playVideoSelections(Scanner scanner, ArrayList<Video> videoList){
+        PlayVideo playVideo = new PlayVideo(0, videoList);
         boolean back = false;
         while (!back) {
             createPlayingVideoSelectionMenu();
