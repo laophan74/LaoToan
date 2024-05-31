@@ -17,12 +17,17 @@ public class SystemFunctions {
         
         Video video = new Video(id, name, modifiedDate, path);
         videoList.add(video);
-        System.out.println("Video added successfully at " + video.getModifiedDate());
+        System.out.println("\nVideo added successfully at " + video.getModifiedDate());
     }
 
     public void borrowVideo(){
 
         System.out.println("Video borrowed!");
+    }
+
+    public void returnVideo(){
+
+        System.out.println("Video returned!");
     }
 
     public void modifyVideo(){

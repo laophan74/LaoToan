@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -11,8 +10,8 @@ public class Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         SystemFunctions systemFunctions = new SystemFunctions();
-        Video video = new Video();
-        Video borrowedVideo = new Video();
+        // Video video = new Video();
+        // Video borrowedVideo = new Video();
         ArrayList<Video> videoList = new ArrayList<>();
 
         boolean closeMenu = false;
@@ -27,18 +26,21 @@ public class Application {
                     systemFunctions.borrowVideo();
                     break;
                 case 3:
-                    systemFunctions.modifyVideo();
+                    systemFunctions.returnVideo();
                     break;
                 case 4:
-                    systemFunctions.deleteVideo();
+                    systemFunctions.modifyVideo();
                     break;
                 case 5:
-                    systemFunctions.searchVideo();
+                    systemFunctions.deleteVideo();
                     break;
                 case 6:
-                    systemFunctions.reportVideo(videoList);
+                    systemFunctions.searchVideo();
                     break;
                 case 7:
+                    systemFunctions.reportVideo(videoList);
+                    break;
+                case 8:
                     playVideoSelections(scanner, videoList);
                     break;
                 case 0:
@@ -56,11 +58,12 @@ public class Application {
         System.out.println("--------------------------------------");
         System.out.println("1. Add new video to the system");
         System.out.println("2. Borrow video");
-        System.out.println("3. Modify video record");
-        System.out.println("4. Delete video record");
-        System.out.println("5. Search video");
-        System.out.println("6. Report of available videos");
-        System.out.println("7. Play video");
+        System.out.println("3. Return video");
+        System.out.println("4. Modify video record");
+        System.out.println("5. Delete video record");
+        System.out.println("6. Search video");
+        System.out.println("7. Report of available videos");
+        System.out.println("8. Play video");
         System.out.println("0. Exit");
         System.out.print("Your choice --> ");
     }
