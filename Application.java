@@ -6,8 +6,8 @@ import java.util.Scanner;
  * Application
  */
 public class Application {
-    private static int choice = 0;
-    private static int choice1 = 0;
+    private static int choice = -1;
+    private static int choice1 = -1;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Video> videoList = new ArrayList<>();
@@ -17,8 +17,6 @@ public class Application {
         boolean closeMenu = false;
         while (!closeMenu) {
             createMenu();
-            int choice = -1;
-
             /*
              * Input validation for choice
              * Source: https://stackoverflow.com/questions/43418994/java-util-inputmismatchexception-in-my-integer-validation-method
