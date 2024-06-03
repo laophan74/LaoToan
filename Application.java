@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -9,18 +10,29 @@ public class Application {
     private static int choice1 = 0;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        SystemFunctions systemFunctions = new SystemFunctions();
-        // Video video = new Video();
-        // Video borrowedVideo = new Video();
         ArrayList<Video> videoList = new ArrayList<>();
+        ArrayList<Video> borrowedVideoList = new ArrayList<>();
+        SystemFunctions systemFunctions = new SystemFunctions(scanner, videoList, borrowedVideoList);
 
         boolean closeMenu = false;
         while (!closeMenu) {
-            createSelectionMenu();
-            choice = scanner.nextInt();
+            createMenu();
+            int choice = -1;
+
+            /*
+             * Input validation for choice
+             * Source: https://stackoverflow.com/questions/43418994/java-util-inputmismatchexception-in-my-integer-validation-method
+             */
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("\nInvalid input!!!");
+                scanner.next();
+                continue; // Skip the rest of the loop and start again
+            }
             switch (choice) {
                 case 1:
-                    systemFunctions.addVideo(scanner, videoList);
+                    systemFunctions.addVideo();
                     break;
                 case 2:
                     systemFunctions.borrowVideo();
@@ -38,10 +50,13 @@ public class Application {
                     systemFunctions.searchVideo();
                     break;
                 case 7:
-                    systemFunctions.reportVideo(videoList);
+                    systemFunctions.reportVideo();
                     break;
                 case 8:
-                    playVideoSelections(scanner, videoList);
+                    systemFunctions.reportBorrowedVideo();
+                    break;
+                case 9:
+                    createSubMenu(scanner, videoList);
                     break;
                 case 0:
                     closeMenu = true;
@@ -54,7 +69,7 @@ public class Application {
         scanner.close();
     }
 
-    private static void createSelectionMenu(){
+    private static void createMenu(){
         System.out.println("--------------------------------------");
         System.out.println("1. Add new video to the system");
         System.out.println("2. Borrow video");
@@ -63,16 +78,17 @@ public class Application {
         System.out.println("5. Delete video record");
         System.out.println("6. Search video");
         System.out.println("7. Report of available videos");
-        System.out.println("8. Play video");
+        System.out.println("8. Report of borrowed videos");
+        System.out.println("9. Play video");
         System.out.println("0. Exit");
         System.out.print("Your choice --> ");
     }
 
-    private static void playVideoSelections(Scanner scanner, ArrayList<Video> videoList){
+    private static void createSubMenu(Scanner scanner, ArrayList<Video> videoList){
         PlayVideo playVideo = new PlayVideo(0, videoList);
         boolean back = false;
         while (!back) {
-            createPlayingVideoSelectionMenu();
+            createPlayingVideoMenu();
             choice1 = scanner.nextInt();
             switch (choice1) {
                 case 1:
@@ -93,7 +109,7 @@ public class Application {
         }
     }
 
-    private static void createPlayingVideoSelectionMenu(){ 
+    private static void createPlayingVideoMenu(){ 
         System.out.println("--------------------------------------");
         System.out.println("Play video");
         System.out.println("1. Current video");
