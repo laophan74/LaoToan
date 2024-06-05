@@ -149,7 +149,6 @@ public class SystemFunctions {
     public void deleteVideo(){
         if (checkListVideo(videoList))
         {
-            System.out.println("Video deleted!");
             boolean checkCont = false;
             do {
                 // Search video by ID
