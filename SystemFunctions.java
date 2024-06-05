@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class SystemFunctions {
     }
 
     public void addVideo(){
+        System.out.println("\nAdd a new video");
         String videoId;
         while (true) {
             System.out.print("Enter video ID: ");
@@ -49,6 +51,7 @@ public class SystemFunctions {
     }
 
     public void borrowVideo(){
+        System.out.println("\nBorrow a video");
         System.out.print("Enter video ID: ");
         String videoID = scanner.next();
         scanner.nextLine();
@@ -74,6 +77,7 @@ public class SystemFunctions {
     }
 
     public void returnVideo(){
+        System.out.println("\nReturn a video");
         System.out.print("Enter the id of video which you want to return: ");
         String videoID = scanner.next();
         scanner.nextLine();
@@ -101,7 +105,7 @@ public class SystemFunctions {
     public void modifyVideo(){
         if (checkListVideo(videoList))
         {
-            System.out.println("Video modified!");
+            System.out.println("\nModify video");
             boolean checkCont = false;
             do {
                 // Search video by ID
@@ -193,14 +197,21 @@ public class SystemFunctions {
             System.out.println("Search video");
             boolean checkCont = false;
             do {
+                int choice = -1;
                 // Search video by Id, name, path, modify date
                 System.out.println("Search: ");
                 System.out.println("1. By Id");
                 System.out.println("2. By name");
                 System.out.println("3. By date");
                 System.out.print("Your choice --> ");
-                int choice = scanner.nextInt();
-                scanner.nextLine();
+                try {
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("\nInvalid input!!!");
+                    scanner.next();
+                    continue; // Skip the rest of the loop and start again
+                }
                 switch (choice) {
                     case 1:
                         searchId(scanner, videoList);
