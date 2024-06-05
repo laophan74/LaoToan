@@ -23,6 +23,7 @@ public class Application {
              */
             try {
                 choice = scanner.nextInt();
+                scanner.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("\nInvalid input!!!");
                 scanner.next();
@@ -54,7 +55,7 @@ public class Application {
                     systemFunctions.reportBorrowedVideo();
                     break;
                 case 9:
-                    createSubMenu(scanner, videoList);
+                    playVideo(scanner, videoList);
                     break;
                 case 0:
                     closeMenu = true;
@@ -82,12 +83,19 @@ public class Application {
         System.out.print("Your choice --> ");
     }
 
-    private static void createSubMenu(Scanner scanner, ArrayList<Video> videoList){
+    private static void playVideo(Scanner scanner, ArrayList<Video> videoList){
         PlayVideo playVideo = new PlayVideo(0, videoList);
         boolean back = false;
         while (!back) {
             createPlayingVideoMenu();
-            choice1 = scanner.nextInt();
+            try {
+                choice1 = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("\nInvalid input!!!");
+                scanner.next();
+                continue; // Skip the rest of the loop and start again
+            }
             switch (choice1) {
                 case 1:
                     playVideo.currentVideo();
@@ -116,4 +124,5 @@ public class Application {
         System.out.println("0. Back <--");
         System.out.print("Your choice --> ");
     }
+
 }
